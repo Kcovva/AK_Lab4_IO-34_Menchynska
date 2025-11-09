@@ -44,7 +44,7 @@ MODULE_LICENSE("Dual BSD/GPL");
 // Parameter declaration
 static uint howmany = 1;
 module_param(howmany, uint, 0444);
-MODULE_PARM_DESC(howmany, 
+MODULE_PARM_DESC(howmany,
 	"Determines the number of times the string 'Hello, world!' is printed.\n"
 	"Valid values range is [1:10], recommended range [1:4], default is 1");
 
@@ -68,7 +68,8 @@ static int __init hello_init(void)
 	}
 
 	if (howmany == 0 || howmany >= 5)
-		printk(KERN_WARNING "hello: Not recommended parameter value: %d\n", howmany);
+		printk(KERN_WARNING "hello: Not recommended parameter value: %d\n",
+			howmany);
 
 	// Print the message the required number of times
 	for (n = 1; n <= howmany; n++) {
@@ -99,7 +100,8 @@ static void __exit hello_exit(void)
 	list_for_each_entry_safe(entry, tmp, &time_data_head, tlist) {
 		count++;
 
-		printk(KERN_INFO "hello: Event #%d, kernel time = %lld ns.\n", count, ktime_to_ns(entry->ktime));
+		printk(KERN_INFO "hello: Event #%d, kernel time = %lld ns.\n",
+			count, ktime_to_ns(entry->ktime));
 
 		// Remove the element from the list
 		list_del(&entry->tlist);
