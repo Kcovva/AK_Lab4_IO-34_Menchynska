@@ -74,12 +74,13 @@ static int __init hello_init(void)
 	// Print the message the required number of times
 	for (n = 1; n <= howmany; n++) {
 		ptr = kmalloc(sizeof(*ptr), GFP_KERNEL);
-		ptr->ktime = ktime_get();
 
 		if (ptr == NULL) {
 			printk(KERN_ERR "hello: Memory allocation error\n");
 			return -ENOMEM;
 		}
+
+		ptr->ktime = ktime_get();
 
 		list_add_tail(&ptr->tlist, &time_data_head);
 
